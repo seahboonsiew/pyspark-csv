@@ -37,12 +37,12 @@ sc.addPyFile('pyspark_csv.py')
 Read csv data via SparkContext and convert it to SchemaRDD via pyspark-csv
 ```
 raw_text = sc.textFile('hdfs://x.x.x.x/blah.csv')
-raw_with_schema = pycsv.csvToRDD(sqlCtx, hansard)
+raw_with_schema = pycsv.csvToRDD(sqlCtx, raw_text)
 ```
 By default, pyspark-csv parses the first line as column names. To supply your own column names
 ```
 raw_text = sc.textFile('hdfs://x.x.x.x/blah.csv')
-raw_with_schema = pycsv.csvToRDD(sqlCtx, hansard, columns=['Name','Model','Size','Width','Dt'])
+raw_with_schema = pycsv.csvToRDD(sqlCtx, raw_text, columns=['Name','Model','Size','Width','Dt'])
 ```
 Currently, the following data types are support:
 - int
