@@ -2,7 +2,7 @@
 PySpark-CSV
 
 Convert CSV file into RDD using PySpark
-Supported types:
+Supported types: 
 - Int
 - Double
 - String
@@ -10,6 +10,7 @@ Supported types:
 - Accepts None, ? and '' as null values
 """
 import csv
+import dateutil.parser
 from pyspark import sql
 
 # Main function
@@ -58,7 +59,7 @@ def toSeconds(TIME):
     return 3600*h+60*m+s
 
 def toDate(d):
-    return toSeconds(d.split(' ')[1].split(':'))
+    return dateutil.parser.parse(d).date()
 
 # Infer types for each row
 def getRowType(row):
