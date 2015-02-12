@@ -42,5 +42,7 @@ Currently, the following data types are support:
 - time
 - datetime
 
+It also recognises **None**, **?** and **''** as null values
+
 ## Need help?
 Contact seah_boon_siew@ida.gov.sg
