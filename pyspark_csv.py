@@ -1,7 +1,7 @@
 """
 PySpark-CSV
 
-Convert CSV file into RDD using PySpark
+Convert CSV file into SchemaRDD using PySpark
 Supported types: 
 - Int
 - Double
