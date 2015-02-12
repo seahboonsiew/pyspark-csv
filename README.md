@@ -17,7 +17,7 @@ will generate SchemaRDD with the following schema:
   |--Model: string
   |--Size: int
   |--Width: double
-  |--Dt: datetime.date
+  |--Dt: timestamp
 ```
 
 ## Usage
