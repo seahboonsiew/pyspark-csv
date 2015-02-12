@@ -5,10 +5,10 @@ automatic type inference.
 ## Synopsis
 Supports type inference by evaluating data within each column. In the case where multiple data types are encountered, **pyspark-csv** will assign the lowest common denominator type for that column. For example,
 ```
-  Name,   Model,  Size, Width 
-  Jag,    63,     4,    4
-  Pog,    7.0,    5,    5
-  Peek,   68xp,   5,    5.5
+  Name,   Model,  Size, Width,  Dt
+  Jag,    63,     4,    4,      '2014-12-23'
+  Pog,    7.0,    5,    5,      '2014-12-23'
+  Peek,   68xp,   5,    5.5,    ''
 ```
 will generate SchemaRDD with the following schema: 
 ```
@@ -17,6 +17,7 @@ will generate SchemaRDD with the following schema:
   |--Model: string
   |--Size: int
   |--Width: double
+  |--Dt: datetime.date
 ```
 
 ## Usage
