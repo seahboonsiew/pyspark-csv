@@ -3,7 +3,7 @@ An external PySpark module for parsing csv file into SchemaRDD. It works like R'
 automatic type inference.
 
 ## Synopsis
-Supports type inference by evaluating data within each column. In the case where multiple data types are encountered, **pyspark-csv** will assign the lowest common denominator type for that column. For example,
+Supports type inference by evaluating data within each column. In the case of column having multiple data types, **pyspark-csv** will assign the lowest common denominator type for that column. For example,
 ```
   Name,   Model,  Size, Width,  Dt
   Jag,    63,     4,    4,      '2014-12-23'
