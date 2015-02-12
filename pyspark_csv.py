@@ -50,7 +50,7 @@ def toSqlRow((row,col_types)):
 	
 # Type converter
 def isNone(d):
-    return (d is None or d == 'None' or d == '?' or d == '')
+    return (d is None or d == 'None' or d == '?' or d == '' or d == 'NULL' or d == 'null')
 
 def toSeconds(TIME):
     h = int(TIME[0])
