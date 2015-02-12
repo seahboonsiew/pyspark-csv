@@ -55,4 +55,4 @@ Currently, the following data types are support:
 It also recognises **None**, **?**, **NULL**, and **''** as null values
 
 ## Need help?
-Contact seah_boon_siew@ida.gov.sg
+Contributors welcomed! Contact seah_boon_siew@ida.gov.sg
