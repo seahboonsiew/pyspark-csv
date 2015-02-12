@@ -34,7 +34,7 @@ First, include **pyspark-csv.py** using SparkContext
 import pyspark_csv as pycsv
 sc.addPyFile('pyspark_csv.py')
 ```
-Read csv data via SparkContext and convert it to SchemaRDD via pyspark-csv
+Read csv data via SparkContext and convert it to SchemaRDD
 ```
 raw_text = sc.textFile('hdfs://x.x.x.x/blah.csv')
 raw_with_schema = pycsv.csvToRDD(sqlCtx, raw_text)
