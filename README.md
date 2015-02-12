@@ -21,7 +21,7 @@ will generate SchemaRDD with the following schema:
 ```
 
 ## Usage
-Required Python packages: pyspark, csv, dateutil
+Required Python packages: **pyspark**, **csv**, **dateutil**
 
 First, include pyspark-csv.py using SparkContext
 ```
