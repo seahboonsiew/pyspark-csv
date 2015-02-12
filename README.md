@@ -1,5 +1,5 @@
 # pyspark-csv
-A PySpark module for seamless reading of csv file into SchemaRDD. It works like R's read.csv or Panda read_csv with 
+An external PySpark module for seamless reading of csv file into SchemaRDD. It works like R's read.csv or Panda read_csv with 
 automatic type inference.
 
 ## Synopsis
