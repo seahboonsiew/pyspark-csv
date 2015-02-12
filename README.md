@@ -23,7 +23,7 @@ will generate SchemaRDD with the following schema:
 ## Usage
 Required Python packages: **pyspark**, **csv**, **dateutil**
 
-First, include pyspark-csv.py using SparkContext
+First, include **pyspark-csv.py** using SparkContext
 ```
 import pyspark_csv as pycsv
 sc.addPyFile('pyspark_csv.py')
