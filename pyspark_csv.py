@@ -94,14 +94,14 @@ def reduceTypes(a,b):
         order_a = type_order[a_type]
         order_b = type_order[b_type]
         if a_type == 'none':
-            d[col] = b_type
+       		d[col] = b_type
         elif b_type == 'none':
-            d[col] = a_type
+        	d[col] = a_type
         elif order_a != order_b:
-			if order_a > order_b:
-				d[col] = reduce_map[a_type][order_b]
-			else:
-				d[col] = reduce_map[b_type][order_a]
+					if order_a > order_b:
+						d[col] = reduce_map[a_type][order_b]
+					else:
+						d[col] = reduce_map[b_type][order_a]
         else:
             d[col] = a_type
     return d
