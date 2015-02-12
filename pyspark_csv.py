@@ -113,4 +113,4 @@ def toRow(line):
     for r in csv.reader([line.encode('utf-8')], delimiter=","):
         return r 
 		
-
+ 
