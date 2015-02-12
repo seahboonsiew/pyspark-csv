@@ -1,6 +1,6 @@
 # pyspark-csv
 An external PySpark module for parsing csv file into SchemaRDD. It works like R's read.csv or Panda's read_csv with 
-automatic type inference.
+automatic type inference and null value handling.
 
 ## Synopsis
 Supports type inference by evaluating data within each column. In the case of column having multiple data types, **pyspark-csv** will assign the lowest common denominator type for that column. For example,
