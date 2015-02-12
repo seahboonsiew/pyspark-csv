@@ -1,5 +1,5 @@
 # pyspark-csv
-An external PySpark module that works like R's read.csv or Panda's read_csv with 
+An external PySpark module that works like R's read.csv or Panda's read_csv, with 
 automatic type inference and null value handling. Parses csv file into SchemaRDD. No installation required, simply include **pyspark_csv.py** via SparkContext.
 
 ## Synopsis
