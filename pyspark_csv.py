@@ -59,7 +59,7 @@ def toSeconds(TIME):
     return 3600*h+60*m+s
 
 def toDate(d):
-    return dateutil.parser.parse(d).date()
+    return dateutil.parser.parse(d)
 
 # Infer types for each row
 def getRowType(row):
