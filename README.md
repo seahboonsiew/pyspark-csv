@@ -10,7 +10,7 @@ Supports type inference by evaluating data within each column. In the case of co
   Pog,    7.0,    5,    5,      '2014-12-23'
   Peek,   68xp,   5,    5.5,    ''
 ```
-will generate SchemaRDD with the following schema: 
+generates SchemaRDD with the following schema: 
 ```
   csv_file 
   |--Name: string  
@@ -44,7 +44,17 @@ By default, pyspark-csv parses the first line as column names. To supply your ow
 plaintext_rdd = sc.textFile('hdfs://x.x.x.x/blah.csv')
 rdd_with_schema = pycsv.csvToRDD(sqlCtx, plaintext_rdd, columns=['Name','Model','Size','Width','Dt'])
 ```
-Currently, the following data types are support:
+To change separator
+```
+plaintext_rdd = sc.textFile('hdfs://x.x.x.x/blah.csv')
+rdd_with_schema = pycsv.csvToRDD(sqlCtx, plaintext_rdd, sep=",")
+```
+Skipping date and time parsing can lead to significant performance gain on large datasets
+```
+plaintext_rdd = sc.textFile('hdfs://x.x.x.x/blah.csv')
+rdd_with_schema = pycsv.csvToRDD(sqlCtx, plaintext_rdd, parseDate=False)
+```
+Currently, the following data types are supported:
 - int
 - double
 - string
