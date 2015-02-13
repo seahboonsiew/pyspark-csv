@@ -32,7 +32,7 @@ Convert CSV plain text RDD into SchemaRDD using PySpark
 If columns not given, assume first row is the header
 If separator not given, assume comma separated
 """
-def csvToRDD(sqlCtx,rdd,columns=None,sep=",",parseDate=False):
+def csvToRDD(sqlCtx,rdd,columns=None,sep=",",parseDate=True):
     def toRow(line):
         return toRowSep(line,sep)
     rdd_array = rdd.map(toRow)
