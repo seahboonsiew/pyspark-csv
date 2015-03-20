@@ -25,7 +25,8 @@ SOFTWARE.
 import csv
 import dateutil.parser
 from pyspark import sql
-from pyspark.sql import * 
+from pyspark.sql import *
+from pyspark.sql.types import *
 
 """
 Convert CSV plain text RDD into SchemaRDD using PySpark
@@ -47,7 +48,7 @@ def csvToRDD(sqlCtx,rdd,columns=None,sep=",",parseDate=True):
     return  sqlCtx.applySchema(rdd_sql.map(toSqlRow), schema)
 
 def makeSchema(columns):
-    struct_field_map = { 'string':StringType(), 'date': TimestampType(), 'double': DoubleType(), 'int': IntegerType() }
+    struct_field_map = { 'string':StringType(), 'date': TimestampType(), 'double': DoubleType(), 'int': IntegerType()}
     fields = [StructField(k, struct_field_map[v], True) for k,v in columns]
     return StructType(fields)
 
