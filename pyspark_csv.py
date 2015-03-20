@@ -48,7 +48,7 @@ def csvToRDD(sqlCtx,rdd,columns=None,sep=",",parseDate=True):
     return  sqlCtx.applySchema(rdd_sql.map(toSqlRow), schema)
 
 def makeSchema(columns):
-    struct_field_map = { 'string':StringType(), 'date': TimestampType(), 'double': DoubleType(), 'int': IntegerType()}
+    struct_field_map = { 'string':StringType(), 'date': TimestampType(), 'double': DoubleType(), 'int': IntegerType(), 'none':NullType()}
     fields = [StructField(k, struct_field_map[v], True) for k,v in columns]
     return StructType(fields)
 
