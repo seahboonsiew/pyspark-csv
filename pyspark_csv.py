@@ -29,7 +29,7 @@ from pyspark.sql import *
 from pyspark.sql.types import *
 
 """
-Convert CSV plain text RDD into SchemaRDD using PySpark
+Convert CSV plain text RDD into SparkSQL DataFrame (former SchemaRDD) using PySpark
 If columns not given, assume first row is the header
 If separator not given, assume comma separated
 """
