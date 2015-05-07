@@ -29,11 +29,11 @@ from pyspark.sql import *
 from pyspark.sql.types import *
 
 """
-Convert CSV plain text RDD into SchemaRDD using PySpark
+Convert CSV plain text RDD into SparkSQL DataFrame (former SchemaRDD) using PySpark
 If columns not given, assume first row is the header
 If separator not given, assume comma separated
 """
-def csvToRDD(sqlCtx,rdd,columns=None,sep=",",parseDate=True):
+def csvToDataFrame(sqlCtx,rdd,columns=None,sep=",",parseDate=True):
     def toRow(line):
         return toRowSep(line,sep)
     rdd_array = rdd.map(toRow)
@@ -45,7 +45,7 @@ def csvToRDD(sqlCtx,rdd,columns=None,sep=",",parseDate=True):
     def toSqlRow(row):
         return toSqlRowWithType(row,column_types)
     schema = makeSchema(zip(columns,column_types)) 
-    return  sqlCtx.applySchema(rdd_sql.map(toSqlRow), schema)
+    return  sqlCtx.createDataFrame(rdd_sql.map(toSqlRow), schema=schema)
 
 def makeSchema(columns):
     struct_field_map = { 'string':StringType(), 'date': TimestampType(), 'double': DoubleType(), 'int': IntegerType(), 'none':NullType()}
