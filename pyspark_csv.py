@@ -33,7 +33,7 @@ Convert CSV plain text RDD into SparkSQL DataFrame (former SchemaRDD) using PySp
 If columns not given, assume first row is the header
 If separator not given, assume comma separated
 """
-def csvToRDD(sqlCtx,rdd,columns=None,sep=",",parseDate=True):
+def csvToDataFrame(sqlCtx,rdd,columns=None,sep=",",parseDate=True):
     def toRow(line):
         return toRowSep(line,sep)
     rdd_array = rdd.map(toRow)
