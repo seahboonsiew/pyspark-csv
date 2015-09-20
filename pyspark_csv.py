@@ -78,7 +78,7 @@ def toSqlRowWithType(row,col_types):
 	
 # Type converter
 def isNone(d):
-    return (d is None or d == 'None' or d == '?' or d == '' or d == 'NULL' or d == 'null')
+    return (d is None or d == 'None' or d == '?' or d == '' or d == 'NULL' or d == 'null' or d == 'NA')
 
 def toDate(d):
     return dateutil.parser.parse(d)
