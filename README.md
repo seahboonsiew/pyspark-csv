@@ -73,7 +73,7 @@ Currently, the following data types are supported:
 - time
 - datetime
 
-It also recognises **None**, **?**, **NULL**, and **''** as null values
+It also recognises **None**, **?**, **NULL**, **NA**, **''** as null values
 
 ## Need help?
 Contributors welcomed! Contact seah_boon_siew@ida.gov.sg
