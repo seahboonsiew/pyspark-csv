@@ -56,6 +56,15 @@ Skipping date and time parsing can lead to significant performance gain on large
 plaintext_rdd = sc.textFile('hdfs://x.x.x.x/blah.csv')
 dataframe = pycsv.csvToDataFrame(sqlCtx, plaintext_rdd, parseDate=False)
 ```
+
+By default, the csvToDataFrame evaluates just 1000 rows to infer data types.
+To change this behaviour you can set nSampl parameter. 
+
+```
+plaintext_rdd = sc.textFile('hdfs://x.x.x.x/blah.csv')
+dataframe = pycsv.csvToDataFrame(sqlCtx, plaintext_rdd, nSampl=10000)
+```
+
 Currently, the following data types are supported:
 - int
 - double
