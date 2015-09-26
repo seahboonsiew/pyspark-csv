@@ -41,7 +41,7 @@ def csvToDataFrame(sqlCtx,rdd,columns=None,sep=",",parseDate=True, nSampl=1000):
     if columns is None:
         columns = rdd_array.first()
         rdd_sampl = rdd_array.zipWithIndex().filter(lambda (r,i): (i > 0)
-        if nSampl > 0: rdd_sampl = rdd_sampl.filter(lambda(r,i): (i < nSampl)
+        if nSampl > 0: rdd_sampl = rdd_sampl.filter(lambda(r,i): (i < nSampl))
         rdd_sampl = rdd_sampl.keys()
         rdd_sql = rdd_array.zipWithIndex().filter(lambda (r,i): i > 0).keys()
     column_types = evaluateType(rdd_sampl,parseDate)
