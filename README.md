@@ -58,7 +58,7 @@ dataframe = pycsv.csvToDataFrame(sqlCtx, plaintext_rdd, parseDate=False)
 ```
 
 By default, the csvToDataFrame evaluates just 1000 rows to infer data types.
-To change this behaviour you can set nSampl parameter. 
+To change this behaviour you can set nSampl parameter. If nSampl is set to 0, csvToDataFrame will evaluate all rows.
 
 ```
 plaintext_rdd = sc.textFile('hdfs://x.x.x.x/blah.csv')
