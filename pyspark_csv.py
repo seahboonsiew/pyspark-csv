@@ -33,18 +33,15 @@ Convert CSV plain text RDD into SparkSQL DataFrame (former SchemaRDD) using PySp
 If columns not given, assume first row is the header
 If separator not given, assume comma separated
 """
-def csvToDataFrame(sqlCtx,rdd,columns=None,sep=",",parseDate=True, nSampl=1000):
+def csvToDataFrame(sqlCtx,rdd,columns=None,sep=",",parseDate=True):
     def toRow(line):
         return toRowSep(line,sep)
     rdd_array = rdd.map(toRow)
     rdd_sql = rdd_array
     if columns is None:
         columns = rdd_array.first()
-        rdd_sampl = rdd_array.zipWithIndex().filter(lambda (r,i): (i > 0)
-        if nSampl > 0: rdd_sampl = rdd_sampl.filter(lambda(r,i): (i < nSampl))
-        rdd_sampl = rdd_sampl.keys()
         rdd_sql = rdd_array.zipWithIndex().filter(lambda (r,i): i > 0).keys()
-    column_types = evaluateType(rdd_sampl,parseDate)
+    column_types = evaluateType(rdd_sql,parseDate)
     def toSqlRow(row):
         return toSqlRowWithType(row,column_types)
     schema = makeSchema(zip(columns,column_types)) 
@@ -80,7 +77,7 @@ def toSqlRowWithType(row,col_types):
 	
 # Type converter
 def isNone(d):
-    return (d is None or d == 'None' or d == '?' or d == '' or d == 'NULL' or d == 'null' or d == 'NA')
+    return (d is None or d == 'None' or d == '?' or d == '' or d == 'NULL' or d == 'null')
 
 def toDate(d):
     return dateutil.parser.parse(d)
