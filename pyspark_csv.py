@@ -23,10 +23,13 @@ SOFTWARE.
 """
 
 import csv
+import sys
 import dateutil.parser
 from pyspark import sql
 from pyspark.sql import *
 from pyspark.sql.types import *
+
+py_version = sys.version_info[0]
 
 """
 Convert CSV plain text RDD into SparkSQL DataFrame (former SchemaRDD) using PySpark
@@ -34,18 +37,24 @@ If columns not given, assume first row is the header
 If separator not given, assume comma separated
 """
 def csvToDataFrame(sqlCtx,rdd,columns=None,sep=",",parseDate=True):
-    def toRow(line):
-        return toRowSep(line,sep)
+    if py_version < 3:
+        def toRow(line):
+            return toRowSep(line.encode('utf-8'), sep)
+    else:
+        def toRow(line):
+            return toRowSep(line, sep)
+
     rdd_array = rdd.map(toRow)
     rdd_sql = rdd_array
     if columns is None:
         columns = rdd_array.first()
-        rdd_sql = rdd_array.zipWithIndex().filter(lambda (r,i): i > 0).keys()
+        rdd_sql = rdd_array.zipWithIndex().filter(
+            lambda r_i: r_i[1] > 0).keys()
     column_types = evaluateType(rdd_sql,parseDate)
     def toSqlRow(row):
         return toSqlRowWithType(row,column_types)
     schema = makeSchema(zip(columns,column_types)) 
-    return  sqlCtx.createDataFrame(rdd_sql.map(toSqlRow), schema=schema)
+    return sqlCtx.createDataFrame(rdd_sql.map(toSqlRow), schema=schema)
 
 def makeSchema(columns):
     struct_field_map = { 'string':StringType(), 'date': TimestampType(), 'double': DoubleType(), 'int': IntegerType(), 'none':NullType()}
@@ -54,7 +63,7 @@ def makeSchema(columns):
 
 # Parse a row using csv.reader	
 def toRowSep(line,d):
-    for r in csv.reader([line.encode('utf-8')], delimiter=d):
+    for r in csv.reader([line], delimiter=d):
         return r 
         
 
